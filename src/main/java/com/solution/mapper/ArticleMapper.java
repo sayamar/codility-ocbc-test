@@ -21,16 +21,19 @@ public class ArticleMapper {
     }
 
     public Article toEntity(ArticleDTO articleDTO) {
-        return Article.builder()
-                .title(articleDTO.getTitle())
-                .content(articleDTO.getContent())
-                .tags(convertTagsToEntity(articleDTO.getTags()))
-                .build();
+       Article article = new Article();
+               article.setTitle(articleDTO.getTitle());
+                article.setContent(articleDTO.getContent());
+                article.setTags(convertTagsToEntity(articleDTO.getTags()));
+                 article.getTags().forEach(tag -> tag.setArticle(article));
+                 return article;
     }
 
     private List<Tag> convertTagsToEntity(List<String> tags) {
         return tags.stream()
-                .map(tag -> Tag.builder().tag(tag).build())
+                .map(tag -> Tag.builder()
+                        .tag(tag)
+                        .build())
                 .collect(Collectors.toList());
     }
 

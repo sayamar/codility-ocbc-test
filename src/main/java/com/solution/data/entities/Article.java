@@ -23,7 +23,7 @@ public class Article {
     private String title;
     private String content;
 
-    @OneToMany(mappedBy = "article", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "article", cascade = CascadeType.ALL, fetch = FetchType.LAZY ,    orphanRemoval = true,   targetEntity = Tag.class)
     private List<Tag> tags;
 
 

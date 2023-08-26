@@ -34,7 +34,9 @@ public class ArticleService {
        return articleRepository.save(articleMapper.toEntity(articleDTO)).getId();
     }
     public void update(Long id,ArticleDTO articleDTO) {
-        articleRepository.save(articleMapper.toEntity(articleDTO));
+       articleRepository.findById(id)
+               .map(article -> articleMapper.toEntity(articleDTO).toBuilder().id(id).build())
+               .ifPresent(articleRepository::saveAndFlush);
     }
 
     public void delete(Long id) {
