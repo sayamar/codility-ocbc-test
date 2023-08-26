@@ -1,9 +1,17 @@
 package com.solution.data.entities;
 
-import jakarta.persistence.*;
+
+import lombok.*;
+
+import javax.persistence.*;
 
 @Entity
 @Table( name ="tag")
+@Setter
+@Getter
+@Builder(toBuilder = true)
+@AllArgsConstructor
+@NoArgsConstructor
 public class Tag {
 
     @Id
@@ -15,4 +23,6 @@ public class Tag {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "article_id")
     private Article article;
+
+
 }

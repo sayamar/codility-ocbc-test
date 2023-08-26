@@ -1,12 +1,19 @@
 package com.solution.data.entities;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
+
+import lombok.*;
 
 
 import java.util.List;
 
 @Entity
 @Table( name ="article")
+@Setter
+@Getter
+@Builder(toBuilder = true)
+@AllArgsConstructor
+@NoArgsConstructor
 public class Article {
 
     @Id
@@ -18,4 +25,6 @@ public class Article {
 
     @OneToMany(mappedBy = "article", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Tag> tags;
+
+
 }
