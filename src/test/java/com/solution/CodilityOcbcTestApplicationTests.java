@@ -1,4 +1,4 @@
-package com.solution.articles.codilityocbctest;
+package com.solution;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
